@@ -1,0 +1,30 @@
+{
+  "source": "https://github.com/Am0MuK/lp-sim README",
+  "window": {
+    "from_block": 478933740,
+    "to_block": 509690000
+  },
+  "pools": [
+    {
+      "pool_name": "USDC/USDT0 0.01%",
+      "sim_onchain_token0": 1.0000,
+      "sim_onchain_token1": 0.9992,
+      "mismatches": 0,
+      "swaps": 62484
+    },
+    {
+      "pool_name": "GHO/USDC 0.05%",
+      "sim_onchain_token0": 1.0000,
+      "sim_onchain_token1": 1.0000,
+      "mismatches": 0,
+      "swaps": 1389
+    },
+    {
+      "pool_name": "USDe/USDT0 0.05%",
+      "sim_onchain_token0": 0.9971,
+      "sim_onchain_token1": 1.0001,
+      "mismatches": 0,
+      "swaps": 508
+    }
+  ]
+}
