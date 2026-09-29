@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What on-chain data says about two DeFi strategies</title>
+  <meta name="description" content="Empirical portfolio of measured findings on Aave V3 liquidations and Uniswap V3 stable LP strategies on Arbitrum.">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>What on-chain data says about two DeFi strategies</h1>
+      <p class="header-meta">
+        Measured on-chain research across Arbitrum One by 
+        <a href="https://github.com/Am0MuK" target="_blank" rel="noopener noreferrer">Am0MuK</a>.
+        Data generated strictly from local on-chain event databases.
+      </p>
+      <div class="links-bar">
+        <span>Profile: <a href="https://github.com/Am0MuK" target="_blank" rel="noopener noreferrer">github.com/Am0MuK</a></span>
+        <span>MEV Scout: <a href="https://github.com/Am0MuK/mev-scout" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/mev-scout</a></span>
+        <span>LP Simulator: <a href="https://github.com/Am0MuK/lp-sim" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/lp-sim</a></span>
+        <span>Tie-Out: <a href="https://github.com/Am0MuK/onchain-tieout" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/onchain-tieout</a></span>
+        <span>Contact: <a href="mailto:kontakt@defisteuer.de">kontakt@defisteuer.de</a></span>
+      </div>
+    </header>
+
+    <!-- SECTION A: AAVE V3 LIQUIDATIONS -->
+    <section id="section-liquidations">
+      <div class="section-header">
+        <h2>Section A: Aave V3 Liquidations on Arbitrum (12 Months)</h2>
+        <p class="section-intro">Census and valuation of all 11,135 liquidation events on Arbitrum One (chain_id 42161) over 365 days.</p>
+      </div>
+
+      <div class="spec-grid">
+        <div class="info-card">
+          <div class="info-label">The Question</div>
+          <div class="info-body">
+            Is there MEV money in Aave V3 liquidations on Arbitrum One, who captures it, and should a newcomer build a liquidation bot?
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">The Rule Fixed in Advance</div>
+          <div class="info-body">
+            Build a bot only for a niche that earns at least 300 EUR net per month in at least two thirds of the months, in a market where the largest single competitor takes at most 50% of the profit.
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">The Result</div>
+          <div class="info-body">
+            The market generated $3.18M net profit (2.77M EUR) across 276 liquidators. Top-1 liquidator captured 26.9% and Top-3 took 45.9%. However, 66.4% of total annual profit came from just 5 days, and 2025-10-10 alone generated 28.8% ($914k). Outside crashes, the entire market shares ~68,100 EUR per month across 87 competitors (median $116 per liquidation). Liquidations under $100 of debt are net negative. Liquidations are won in the same block; entering means a speed race against 87 incumbent bots. Recommendation: do not build.
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">How It Was Checked</div>
+          <div class="info-body">
+            Events decoded from historical logs between block 380,824,910 and 506,580,201. Valued offline with exact Decimal math using Aave Oracle price calls cached from archive RPC. Zero unpriced events. Exactly 23 anomalous events (collateral &gt; debt x 1.2 or zero debt, such as the KelpDAO rsETH recovery at block 460,068,736) were filtered and listed separately. Sampled receipts verified against on-chain gas and ERC-20 transfer logs.
+          </div>
+        </div>
+
+        <div class="info-card full-width">
+          <div class="info-label">Limits</div>
+          <div class="info-body">
+            Observational only: measures whole-market captured profit, not what a newcomer would capture. Newcomer costs modeled: actual receipt gas, 0.3% collateral swap fee, and 0.05% flash loan fee. Does not model priority gas auctions (PGA) or private builder tips.
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics Strip -->
+      <div class="metrics-strip">
+        <div class="metric-card">
+          <div class="metric-val" id="liq-net-usd">$3.18M</div>
+          <div class="metric-desc" id="liq-net-sub">2.77M EUR net profit</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="liq-distinct">276</div>
+          <div class="metric-desc">Distinct liquidators</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="liq-top1">26.9%</div>
+          <div class="metric-desc" id="liq-top1-sub">Top-1 share (Top-3: 45.9%)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="liq-top5days">66.4%</div>
+          <div class="metric-desc" id="liq-top5days-sub">Top 5 days share</div>
+        </div>
+      </div>
+
+      <!-- Chart 1: Monthly Breakdown -->
+      <div class="chart-wrapper">
+        <div class="chart-title">Aave V3 Arbitrum: Monthly Net Profit &amp; Event Volume</div>
+        <div class="chart-sub">12 consecutive months ending September 2026. Note the severe spikes during crash periods (Oct 2025, Jan/Feb 2026).</div>
+        <div class="chart-container">
+          <canvas id="liq-chart-monthly"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 2: Top 10 Days -->
+      <div class="chart-wrapper">
+        <div class="chart-title">Aave V3 Arbitrum: Top 10 Days by Net Profit (USD)</div>
+        <div class="chart-sub">Top 5 days (red) represent 66.4% of all annual net revenue. 2025-10-10 alone generated 28.8%.</div>
+        <div class="chart-container">
+          <canvas id="liq-chart-days"></canvas>
+        </div>
+      </div>
+
+      <!-- Table: Monthly Breakdown -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Window</th>
+              <th class="num">Events</th>
+              <th class="num">Net Profit (USD)</th>
+              <th class="num">Net Profit (EUR)</th>
+            </tr>
+          </thead>
+          <tbody id="liq-months-tbody">
+            <!-- Populated dynamically by assets/app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table: Top 10 Days -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Date (UTC)</th>
+              <th class="num">Net Profit (USD)</th>
+              <th class="num">Net Profit (EUR)</th>
+              <th class="num">Share of Year</th>
+              <th class="num">Events</th>
+            </tr>
+          </thead>
+          <tbody id="liq-days-tbody">
+            <!-- Populated dynamically by assets/app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table: Published Reconciliation -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="num">Published Figure</th>
+              <th class="num">Recomputed from DB</th>
+              <th class="num">Reconciliation</th>
+            </tr>
+          </thead>
+          <tbody id="liq-reconc-tbody">
+            <!-- Populated dynamically by assets/app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION B: LP-SIM STABLE PAIRS -->
+    <section id="section-lpsim">
+      <div class="section-header">
+        <h2>Section B: Stable-Pair LP versus Lending (lp-sim)</h2>
+        <p class="section-intro">Simulation of 1,464 range strategies on 8 Uniswap V3 stable pools on Arbitrum One over 90 days.</p>
+      </div>
+
+      <div class="spec-grid">
+        <div class="info-card">
+          <div class="info-label">The Question</div>
+          <div class="info-body">
+            Does an actively managed narrow concentrated-liquidity position on stable pairs beat holding, and beat a static wide position, after all fees, gas, and swap costs?
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">The Rule Fixed in Advance</div>
+          <div class="info-body">
+            Net return of at least 15% per year in at least 2 of 3 consecutive 30-day months, and better than a static +-10% position in at least 2 of 3 months.
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">The Result</div>
+          <div class="info-body">
+            All 1,464 strategy runs failed the 15% threshold (0 PASS across all pools and sizes). Across the 3 decision pools, best annual net APY was 1.76% on USDC/USDT0, 8.93% on GHO/USDC at $50 (falling to 2.78% at $10k), and 2.13% on USDe/USDT0. The tight autobalancer (1 to 5 ticks) destroyed capital: on USDC/USDT0 it executed 403 rebalances in 90 days, losing $93.78 on $1k capital and $628.60 on $10k capital due to pool swap fees and price impact. The binding limit is the total fee pool ($53k/year on USDC/USDT0, $1.7k on GHO/USDC, $340 on USDe/USDT0). Recommendation: do not build.
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">How It Was Checked</div>
+          <div class="info-body">
+            Active liquidity reconstructed tick-by-tick from historical Mint and Burn logs plus initial block state. Replayed liquidity matched swap event liquidity with 0 mismatches across 62,484 swaps in USDC/USDT0, 1,389 in GHO/USDC, and 508 in USDe/USDT0. Fee growth validated against on-chain feeGrowthGlobal (USDC/USDT0: 1.0000 and 0.9992; GHO/USDC: 1.0000 and 1.0000; USDe/USDT0: 0.9971 and 1.0001).
+          </div>
+        </div>
+
+        <div class="info-card full-width">
+          <div class="info-label">Limits</div>
+          <div class="info-body">
+            Window: 90 days (blocks 478,933,740 to 509,690,000). Stable pools on Arbitrum only. Walking through empty uninitialized ticks can over-count fee per unit liquidity by up to 1 wei per tick (at most ~0.1 token over 90 days, zero material dollar effect).
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics Strip -->
+      <div class="metrics-strip">
+        <div class="metric-card">
+          <div class="metric-val" id="lp-runs-count">1,464</div>
+          <div class="metric-desc">Strategy runs (8 pools x 3 sizes x 61)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val fail" id="lp-pass-count">0 / 1,464</div>
+          <div class="metric-desc">Passing kill criterion (0% pass rate)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="lp-threshold">15% APY</div>
+          <div class="metric-desc">Hurdle threshold (unmet)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="lp-best-overall">8.9%</div>
+          <div class="metric-desc" id="lp-best-overall-sub">Best APY (GHO/USDC at $50)</div>
+        </div>
+      </div>
+
+      <!-- Chart: Best Strategy APY vs Threshold -->
+      <div class="chart-wrapper">
+        <div class="chart-title">Best Strategy Net APY vs 15% Kill Criterion Threshold</div>
+        <div class="chart-sub">Decision pools shown in dark blue, info-only pools in muted gray. Red dashed line marks the 15% annual threshold. None passes.</div>
+        <div class="chart-container">
+          <canvas id="lp-chart-apys"></canvas>
+        </div>
+      </div>
+
+      <!-- Table: Best Strategy per Pool -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Pool</th>
+              <th>Best Strategy</th>
+              <th class="num">Capital Size</th>
+              <th class="num">Avg Net APY</th>
+              <th class="num">Monthly Net APYs</th>
+              <th class="num">Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="lp-pools-tbody">
+            <!-- Populated dynamically by assets/app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Autobalancer vs Static Comparison on USDC/USDT0 -->
+      <div class="callout">
+        <div class="callout-title">The Active Management Paradox on USDC/USDT0 0.01%</div>
+        <p>Tight active rebalancing (AUTOBALANCER_1) triggered 403 rebalances in 90 days. Every rebalance crossed the spread and paid the pool fee, turning positive fee accrual into severe dollar losses.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Strategy</th>
+              <th class="num">Rebalances</th>
+              <th class="num">Total Net USD</th>
+              <th class="num">Annual Net APY</th>
+              <th class="num">Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="lp-auto-tbody">
+            <!-- Populated dynamically by assets/app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Validation Tie-out Table from lpsim_validation.json -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Decision Pool</th>
+              <th class="num">Sim/Chain Token0</th>
+              <th class="num">Sim/Chain Token1</th>
+              <th class="num">Liquidity Mismatches</th>
+              <th class="num">Swaps Replayed</th>
+              <th>Verification Status</th>
+            </tr>
+          </thead>
+          <tbody id="lp-val-tbody">
+            <!-- Populated dynamically by assets/app.js -->
+          </tbody>
+        </table>
+      </div>
+      <p id="lp-val-notes" style="font-size: 0.82rem; color: var(--text-dim); margin-top: -1rem; margin-bottom: 2rem;"></p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer-disclaimer">
+        Not investment advice. This page presents empirical measurements derived strictly from historical on-chain data for engineering evaluation.
+      </p>
+      <p class="footer-contact">
+        Contact: <a href="mailto:kontakt@defisteuer.de">kontakt@defisteuer.de</a> | 
+        Code &amp; data: <a href="https://github.com/Am0MuK/Am0MuK.github.io" target="_blank" rel="noopener noreferrer">Am0MuK/Am0MuK.github.io</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
