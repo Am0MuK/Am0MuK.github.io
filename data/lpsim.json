@@ -1,0 +1,773 @@
+{
+  "meta": {
+    "source_dir": "/data/projects/lp-sim/results/2026-09-29",
+    "date": "2026-09-29",
+    "threshold_annual_apy_pct": 15.0,
+    "window_days": 90,
+    "window_blocks": {
+      "from_block": 478933741,
+      "to_block": 509690000
+    },
+    "total_pools": 8,
+    "total_strategy_runs": 1464,
+    "total_pass_count": 0,
+    "sizes_usd": [
+      50,
+      1000,
+      10000
+    ],
+    "decision_pools": [
+      "GHO/USDC 0.05%",
+      "USDC/USDT0 0.01%",
+      "USDe/USDT0 0.05%"
+    ]
+  },
+  "pool_summaries": [
+    {
+      "pool_name": "GHO/USDC 0.05%",
+      "pool_address": "0xa8ba6d8cfc317a8ba8d71efb185dfa34162ec47e",
+      "is_decision_pool": true,
+      "best_strategy": "STATIC_0.01",
+      "best_size_usd": 50.0,
+      "best_avg_apy": 0.08926076390903341,
+      "best_avg_apy_pct": 8.93,
+      "best_monthly_apys_pct": [
+        11.1,
+        4.38,
+        11.3
+      ]
+    },
+    {
+      "pool_name": "USDe/USDT0 0.05%",
+      "pool_address": "0xaf7b48ae2f4773fd44f9208cca3db5ae7bfa7e37",
+      "is_decision_pool": true,
+      "best_strategy": "STATIC_0.01",
+      "best_size_usd": 50.0,
+      "best_avg_apy": 0.021319512025665066,
+      "best_avg_apy_pct": 2.13,
+      "best_monthly_apys_pct": [
+        2.79,
+        2.12,
+        1.48
+      ]
+    },
+    {
+      "pool_name": "USDC/USDT0 0.01%",
+      "pool_address": "0xbe3ad6a5669dc0b8b12febc03608860c31e2eef6",
+      "is_decision_pool": true,
+      "best_strategy": "STATIC_0.05",
+      "best_size_usd": 50.0,
+      "best_avg_apy": 0.01757156026575504,
+      "best_avg_apy_pct": 1.76,
+      "best_monthly_apys_pct": [
+        2.04,
+        1.07,
+        2.16
+      ]
+    },
+    {
+      "pool_name": "USDT0/USDC.e 0.01%",
+      "pool_address": "0x8c9d230d45d6cfee39a6680fb7cb7e8de7ea8e71",
+      "is_decision_pool": false,
+      "best_strategy": "STATIC_0.05",
+      "best_size_usd": 50.0,
+      "best_avg_apy": 0.021008528272906713,
+      "best_avg_apy_pct": 2.1,
+      "best_monthly_apys_pct": [
+        2.91,
+        2.19,
+        1.2
+      ]
+    },
+    {
+      "pool_name": "USDC/DAI 0.01%",
+      "pool_address": "0x7cf803e8d82a50504180f417b8bc7a493c0a0503",
+      "is_decision_pool": false,
+      "best_strategy": "STATIC_0.01",
+      "best_size_usd": 50.0,
+      "best_avg_apy": 0.016064812432125986,
+      "best_avg_apy_pct": 1.61,
+      "best_monthly_apys_pct": [
+        1.16,
+        2.92,
+        2.34,
+        0.0
+      ]
+    },
+    {
+      "pool_name": "DAI/USDC.e 0.01%",
+      "pool_address": "0xf0428617433652c9dc6d1093a42adfbf30d29f74",
+      "is_decision_pool": false,
+      "best_strategy": "RECENTER_DELAY_0.01_240",
+      "best_size_usd": 1000.0,
+      "best_avg_apy": 0.015534445762178377,
+      "best_avg_apy_pct": 1.55,
+      "best_monthly_apys_pct": [
+        2.03,
+        1.39,
+        2.72,
+        0.08
+      ]
+    },
+    {
+      "pool_name": "DAI/USDT0 0.01%",
+      "pool_address": "0x7f580f8a02b759c350e6b8340e7c2d4b8162b6a9",
+      "is_decision_pool": false,
+      "best_strategy": "STATIC_0.1",
+      "best_size_usd": 50.0,
+      "best_avg_apy": 0.011827544836375945,
+      "best_avg_apy_pct": 1.18,
+      "best_monthly_apys_pct": [
+        0.71,
+        1.16,
+        2.86,
+        -0.0
+      ]
+    },
+    {
+      "pool_name": "USDC/USDC.e 0.01%",
+      "pool_address": "0x8e295789c9465487074a65b1ae9ce0351172393f",
+      "is_decision_pool": false,
+      "best_strategy": "RECENTER_DELAY_0.01_15",
+      "best_size_usd": 1000.0,
+      "best_avg_apy": 0.010409889866740282,
+      "best_avg_apy_pct": 1.04,
+      "best_monthly_apys_pct": [
+        0.63,
+        1.06,
+        1.43
+      ]
+    }
+  ],
+  "pool_size_results": [
+    {
+      "pool_name": "DAI/USDC.e 0.01%",
+      "pool_address": "0xf0428617433652c9dc6d1093a42adfbf30d29f74",
+      "is_decision_pool": false,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 1.02,
+        "monthly_net_apys_pct": [
+          0.73,
+          1.44,
+          1.89,
+          0.02
+        ],
+        "total_net_usd": 0.17,
+        "total_fees_usd": 0.17,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "DAI/USDC.e 0.01%",
+      "pool_address": "0xf0428617433652c9dc6d1093a42adfbf30d29f74",
+      "is_decision_pool": false,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.01_240",
+        "avg_monthly_net_apy_pct": 1.55,
+        "monthly_net_apys_pct": [
+          2.03,
+          1.39,
+          2.72,
+          0.08
+        ],
+        "total_net_usd": 5.11,
+        "total_fees_usd": 6.89,
+        "total_gas_usd": 0.9,
+        "total_swap_costs_usd": 0.38,
+        "total_rebalances": 9,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "DAI/USDC.e 0.01%",
+      "pool_address": "0xf0428617433652c9dc6d1093a42adfbf30d29f74",
+      "is_decision_pool": false,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.01_240",
+        "avg_monthly_net_apy_pct": 0.71,
+        "monthly_net_apys_pct": [
+          1.31,
+          -0.18,
+          1.65,
+          0.07
+        ],
+        "total_net_usd": 23.44,
+        "total_fees_usd": 44.09,
+        "total_gas_usd": 0.9,
+        "total_swap_costs_usd": 14.75,
+        "total_rebalances": 9,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "DAI/USDT0 0.01%",
+      "pool_address": "0x7f580f8a02b759c350e6b8340e7c2d4b8162b6a9",
+      "is_decision_pool": false,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.1",
+        "avg_monthly_net_apy_pct": 1.18,
+        "monthly_net_apys_pct": [
+          0.71,
+          1.16,
+          2.86,
+          -0.0
+        ],
+        "total_net_usd": 0.19,
+        "total_fees_usd": 0.21,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "DAI/USDT0 0.01%",
+      "pool_address": "0x7f580f8a02b759c350e6b8340e7c2d4b8162b6a9",
+      "is_decision_pool": false,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.05_240",
+        "avg_monthly_net_apy_pct": 0.98,
+        "monthly_net_apys_pct": [
+          0.58,
+          1.35,
+          1.98,
+          -0.0
+        ],
+        "total_net_usd": 3.21,
+        "total_fees_usd": 5.3,
+        "total_gas_usd": 0.8,
+        "total_swap_costs_usd": 0.45,
+        "total_rebalances": 8,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "DAI/USDT0 0.01%",
+      "pool_address": "0x7f580f8a02b759c350e6b8340e7c2d4b8162b6a9",
+      "is_decision_pool": false,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.02_240",
+        "avg_monthly_net_apy_pct": 0.98,
+        "monthly_net_apys_pct": [
+          0.7,
+          1.51,
+          1.74,
+          -0.01
+        ],
+        "total_net_usd": 32.35,
+        "total_fees_usd": 62.45,
+        "total_gas_usd": 1.6,
+        "total_swap_costs_usd": 9.77,
+        "total_rebalances": 16,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "GHO/USDC 0.05%",
+      "pool_address": "0xa8ba6d8cfc317a8ba8d71efb185dfa34162ec47e",
+      "is_decision_pool": true,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 8.93,
+        "monthly_net_apys_pct": [
+          11.1,
+          4.38,
+          11.3
+        ],
+        "total_net_usd": 1.1,
+        "total_fees_usd": 1.11,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "GHO/USDC 0.05%",
+      "pool_address": "0xa8ba6d8cfc317a8ba8d71efb185dfa34162ec47e",
+      "is_decision_pool": true,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 6.97,
+        "monthly_net_apys_pct": [
+          5.96,
+          5.71,
+          9.25
+        ],
+        "total_net_usd": 17.19,
+        "total_fees_usd": 18.32,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.48,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "GHO/USDC 0.05%",
+      "pool_address": "0xa8ba6d8cfc317a8ba8d71efb185dfa34162ec47e",
+      "is_decision_pool": true,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 2.78,
+        "monthly_net_apys_pct": [
+          -0.03,
+          3.46,
+          4.91
+        ],
+        "total_net_usd": 68.56,
+        "total_fees_usd": 97.53,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 22.41,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/DAI 0.01%",
+      "pool_address": "0x7cf803e8d82a50504180f417b8bc7a493c0a0503",
+      "is_decision_pool": false,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 1.61,
+        "monthly_net_apys_pct": [
+          1.16,
+          2.92,
+          2.34,
+          0.0
+        ],
+        "total_net_usd": 0.26,
+        "total_fees_usd": 0.27,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/DAI 0.01%",
+      "pool_address": "0x7cf803e8d82a50504180f417b8bc7a493c0a0503",
+      "is_decision_pool": false,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 1.57,
+        "monthly_net_apys_pct": [
+          1.14,
+          2.86,
+          2.27,
+          0.0
+        ],
+        "total_net_usd": 5.16,
+        "total_fees_usd": 5.21,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.01,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/DAI 0.01%",
+      "pool_address": "0x7cf803e8d82a50504180f417b8bc7a493c0a0503",
+      "is_decision_pool": false,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 1.35,
+        "monthly_net_apys_pct": [
+          1.03,
+          2.48,
+          1.9,
+          0.0
+        ],
+        "total_net_usd": 44.39,
+        "total_fees_usd": 44.97,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.09,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/USDC.e 0.01%",
+      "pool_address": "0x8e295789c9465487074a65b1ae9ce0351172393f",
+      "is_decision_pool": false,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.02",
+        "avg_monthly_net_apy_pct": 0.85,
+        "monthly_net_apys_pct": [
+          0.73,
+          1.04,
+          0.79
+        ],
+        "total_net_usd": 0.1,
+        "total_fees_usd": 0.11,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/USDC.e 0.01%",
+      "pool_address": "0x8e295789c9465487074a65b1ae9ce0351172393f",
+      "is_decision_pool": false,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.01_15",
+        "avg_monthly_net_apy_pct": 1.04,
+        "monthly_net_apys_pct": [
+          0.63,
+          1.06,
+          1.43
+        ],
+        "total_net_usd": 2.57,
+        "total_fees_usd": 2.73,
+        "total_gas_usd": 0.1,
+        "total_swap_costs_usd": 0.03,
+        "total_rebalances": 1,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/USDC.e 0.01%",
+      "pool_address": "0x8e295789c9465487074a65b1ae9ce0351172393f",
+      "is_decision_pool": false,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "AUTOBALANCER_1_DELAY_60",
+        "avg_monthly_net_apy_pct": 0.89,
+        "monthly_net_apys_pct": [
+          0.0,
+          1.65,
+          1.01
+        ],
+        "total_net_usd": 21.88,
+        "total_fees_usd": 30.63,
+        "total_gas_usd": 0.9,
+        "total_swap_costs_usd": 7.43,
+        "total_rebalances": 9,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/USDT0 0.01%",
+      "pool_address": "0xbe3ad6a5669dc0b8b12febc03608860c31e2eef6",
+      "is_decision_pool": true,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 1.76,
+        "monthly_net_apys_pct": [
+          2.04,
+          1.07,
+          2.16
+        ],
+        "total_net_usd": 0.22,
+        "total_fees_usd": 0.24,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/USDT0 0.01%",
+      "pool_address": "0xbe3ad6a5669dc0b8b12febc03608860c31e2eef6",
+      "is_decision_pool": true,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 1.75,
+        "monthly_net_apys_pct": [
+          2.04,
+          1.07,
+          2.16
+        ],
+        "total_net_usd": 4.32,
+        "total_fees_usd": 4.89,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.04,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDC/USDT0 0.01%",
+      "pool_address": "0xbe3ad6a5669dc0b8b12febc03608860c31e2eef6",
+      "is_decision_pool": true,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 1.72,
+        "monthly_net_apys_pct": [
+          2.01,
+          1.06,
+          2.09
+        ],
+        "total_net_usd": 42.41,
+        "total_fees_usd": 48.05,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.38,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDT0/USDC.e 0.01%",
+      "pool_address": "0x8c9d230d45d6cfee39a6680fb7cb7e8de7ea8e71",
+      "is_decision_pool": false,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.05",
+        "avg_monthly_net_apy_pct": 2.1,
+        "monthly_net_apys_pct": [
+          2.91,
+          2.19,
+          1.2
+        ],
+        "total_net_usd": 0.26,
+        "total_fees_usd": 0.28,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.0,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDT0/USDC.e 0.01%",
+      "pool_address": "0x8c9d230d45d6cfee39a6680fb7cb7e8de7ea8e71",
+      "is_decision_pool": false,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.05_60",
+        "avg_monthly_net_apy_pct": 1.76,
+        "monthly_net_apys_pct": [
+          1.96,
+          1.66,
+          1.67
+        ],
+        "total_net_usd": 4.34,
+        "total_fees_usd": 5.27,
+        "total_gas_usd": 0.3,
+        "total_swap_costs_usd": 0.26,
+        "total_rebalances": 3,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDT0/USDC.e 0.01%",
+      "pool_address": "0x8c9d230d45d6cfee39a6680fb7cb7e8de7ea8e71",
+      "is_decision_pool": false,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "RECENTER_DELAY_0.05_240",
+        "avg_monthly_net_apy_pct": 0.51,
+        "monthly_net_apys_pct": [
+          0.44,
+          0.51,
+          0.59
+        ],
+        "total_net_usd": 12.68,
+        "total_fees_usd": 24.85,
+        "total_gas_usd": 0.3,
+        "total_swap_costs_usd": 8.22,
+        "total_rebalances": 3,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDe/USDT0 0.05%",
+      "pool_address": "0xaf7b48ae2f4773fd44f9208cca3db5ae7bfa7e37",
+      "is_decision_pool": true,
+      "size_usd": 50.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 2.13,
+        "monthly_net_apys_pct": [
+          2.79,
+          2.12,
+          1.48
+        ],
+        "total_net_usd": 0.26,
+        "total_fees_usd": 0.28,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.01,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDe/USDT0 0.05%",
+      "pool_address": "0xaf7b48ae2f4773fd44f9208cca3db5ae7bfa7e37",
+      "is_decision_pool": true,
+      "size_usd": 1000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 1.7,
+        "monthly_net_apys_pct": [
+          1.87,
+          1.82,
+          1.42
+        ],
+        "total_net_usd": 4.2,
+        "total_fees_usd": 4.48,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.24,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "pool_name": "USDe/USDT0 0.05%",
+      "pool_address": "0xaf7b48ae2f4773fd44f9208cca3db5ae7bfa7e37",
+      "is_decision_pool": true,
+      "size_usd": 10000.0,
+      "total_strategies": 61,
+      "pass_count": 0,
+      "best_strategy": {
+        "name": "STATIC_0.01",
+        "avg_monthly_net_apy_pct": 0.93,
+        "monthly_net_apys_pct": [
+          0.59,
+          1.17,
+          1.04
+        ],
+        "total_net_usd": 23.03,
+        "total_fees_usd": 26.6,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 3.15,
+        "total_rebalances": 0,
+        "verdict": "FAIL"
+      }
+    }
+  ],
+  "usdc_usdt0_comparison": {
+    "1000": {
+      "size_usd": 1000.0,
+      "autobalancer_1": {
+        "strategy": "AUTOBALANCER_1",
+        "rebalances": 403,
+        "total_net_usd": -93.78,
+        "total_fees_usd": 29.84,
+        "total_gas_usd": 40.3,
+        "total_swap_costs_usd": 23.96,
+        "avg_monthly_net_apy_pct": -38.03,
+        "monthly_net_apys_pct": [
+          -26.73,
+          -16.45,
+          -70.92
+        ],
+        "verdict": "FAIL"
+      },
+      "best_static": {
+        "strategy": "STATIC_0.05",
+        "rebalances": 0,
+        "total_net_usd": 4.32,
+        "total_fees_usd": 4.89,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.04,
+        "avg_monthly_net_apy_pct": 1.75,
+        "monthly_net_apys_pct": [
+          2.04,
+          1.07,
+          2.16
+        ],
+        "verdict": "FAIL"
+      }
+    },
+    "10000": {
+      "size_usd": 10000.0,
+      "autobalancer_1": {
+        "strategy": "AUTOBALANCER_1",
+        "rebalances": 403,
+        "total_net_usd": -628.6,
+        "total_fees_usd": 284.88,
+        "total_gas_usd": 40.3,
+        "total_swap_costs_usd": 280.04,
+        "avg_monthly_net_apy_pct": -25.49,
+        "monthly_net_apys_pct": [
+          -14.65,
+          -6.63,
+          -55.19
+        ],
+        "verdict": "FAIL"
+      },
+      "best_static": {
+        "strategy": "STATIC_0.05",
+        "rebalances": 0,
+        "total_net_usd": 42.41,
+        "total_fees_usd": 48.05,
+        "total_gas_usd": 0.0,
+        "total_swap_costs_usd": 0.38,
+        "avg_monthly_net_apy_pct": 1.72,
+        "monthly_net_apys_pct": [
+          2.01,
+          1.06,
+          2.09
+        ],
+        "verdict": "FAIL"
+      }
+    }
+  }
+}
