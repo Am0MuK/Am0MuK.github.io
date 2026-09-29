@@ -52,7 +52,7 @@
         <div class="info-card">
           <div class="info-label">The Result</div>
           <div class="info-body">
-            The market generated $3.18M net profit (2.77M EUR) across 276 liquidators. Top-1 liquidator captured 26.9% and Top-3 took 45.9%. However, 66.4% of total annual profit came from just 5 days, and 2025-10-10 alone generated 28.8% ($914k). Outside crashes, the entire market shares ~68,100 EUR per month across 87 competitors (median $116 per liquidation). Liquidations under $100 of debt are net negative. Liquidations are won in the same block; entering means a speed race against 87 incumbent bots. Recommendation: do not build.
+            The market generated $3.18M net profit (2.77M EUR) across 276 liquidators. Top-1 liquidator captured 26.9% and Top-3 took 45.9%. However, 66.4% of total annual profit came from just 5 days, and 2025-10-10 alone generated 28.8% ($914k). Outside crashes, the entire market shares ~68,100 EUR per month across 87 competitors (median $116 per liquidation). Liquidations under $100 of debt are net negative. Liquidations are a speed race against the 87 active liquidators. Recommendation: do not build.
           </div>
         </div>
 
@@ -66,7 +66,7 @@
         <div class="info-card full-width">
           <div class="info-label">Limits</div>
           <div class="info-body">
-            Observational only: measures whole-market captured profit, not what a newcomer would capture. Newcomer costs modeled: actual receipt gas, 0.3% collateral swap fee, and 0.05% flash loan fee. Does not model priority gas auctions (PGA) or private builder tips.
+            Observational only: measures whole-market captured profit, not what a newcomer would capture. Newcomer costs modeled: actual receipt gas, 0.3% collateral swap fee, and 0.05% flash loan fee. Does not measure a newcomer's latency against the incumbent bots.
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
       <!-- Chart 1: Monthly Breakdown -->
       <div class="chart-wrapper">
         <div class="chart-title">Aave V3 Arbitrum: Monthly Net Profit &amp; Event Volume</div>
-        <div class="chart-sub">12 consecutive months ending September 2026. Note the severe spikes during crash periods (Oct 2025, Jan/Feb 2026).</div>
+        <div class="chart-sub">12 consecutive months ending September 2026. Most of the profit falls in crash periods (Oct/Nov 2025, Jan/Feb 2026).</div>
         <div class="chart-container">
           <canvas id="liq-chart-monthly"></canvas>
         </div>
@@ -189,7 +189,7 @@
         <div class="info-card">
           <div class="info-label">The Result</div>
           <div class="info-body">
-            All 1,464 strategy runs failed the 15% threshold (0 PASS across all pools and sizes). Across the 3 decision pools, best annual net APY was 1.76% on USDC/USDT0, 8.93% on GHO/USDC at $50 (falling to 2.78% at $10k), and 2.13% on USDe/USDT0. The tight autobalancer (1 to 5 ticks) destroyed capital: on USDC/USDT0 it executed 403 rebalances in 90 days, losing $93.78 on $1k capital and $628.60 on $10k capital due to pool swap fees and price impact. The binding limit is the total fee pool ($53k/year on USDC/USDT0, $1.7k on GHO/USDC, $340 on USDe/USDT0). Recommendation: do not build.
+            All 1,464 strategy runs failed the 15% threshold (0 PASS across all pools and sizes). Across the 3 decision pools, best annual net APY was 1.76% on USDC/USDT0, 8.93% on GHO/USDC at $50 (falling to 2.78% at $10k), and 2.13% on USDe/USDT0. The tight autobalancer (1 to 5 ticks) lost money: on USDC/USDT0 it executed 403 rebalances in 90 days, losing $93.78 on $1k capital and $628.60 on $10k capital due to pool swap fees and price impact. The binding limit is the total fee pool ($53k/year on USDC/USDT0, $1.7k on GHO/USDC, $340 on USDe/USDT0). Recommendation: do not build.
           </div>
         </div>
 
@@ -258,8 +258,8 @@
 
       <!-- Autobalancer vs Static Comparison on USDC/USDT0 -->
       <div class="callout">
-        <div class="callout-title">The Active Management Paradox on USDC/USDT0 0.01%</div>
-        <p>Tight active rebalancing (AUTOBALANCER_1) triggered 403 rebalances in 90 days. Every rebalance crossed the spread and paid the pool fee, turning positive fee accrual into severe dollar losses.</p>
+        <div class="callout-title">Tight rebalancing on USDC/USDT0 0.01%</div>
+        <p>Tight active rebalancing (AUTOBALANCER_1) triggered 403 rebalances in 90 days. Each rebalance paid the pool fee and price impact, and the extra fees earned did not cover them.</p>
       </div>
 
       <div class="table-wrapper">

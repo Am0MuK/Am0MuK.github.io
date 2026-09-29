@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           maintainAspectRatio: false,
           interaction: { mode: "index", intersect: false },
           plugins: {
-            legend: { labels: { color: textColor, font: { family } } },
+            legend: { labels: { color: textColor, font: { family: fontFamily } } },
             tooltip: {
               callbacks: {
                 label: (c) => c.datasetIndex === 0 ? `Net: ${fmtUsd(c.raw)}` : `Events: ${fmtInt(c.raw)}`
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           scales: {
             x: {
               grid: { color: gridColor },
-              ticks: { color: textColor, font: { family, size: 11 } }
+              ticks: { color: textColor, font: { family: fontFamily, size: 11 } }
             },
             y: {
               type: "linear",
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               grid: { color: gridColor },
               ticks: {
                 color: textColor,
-                font: { family, size: 11 },
+                font: { family: fontFamily, size: 11 },
                 callback: (v) => "$" + (v >= 1e6 ? (v/1e6).toFixed(1) + "M" : (v/1e3).toFixed(0) + "k")
               }
             },
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               display: true,
               position: "right",
               grid: { drawOnChartArea: false },
-              ticks: { color: textColor, font: { family, size: 11 } }
+              ticks: { color: textColor, font: { family: fontFamily, size: 11 } }
             }
           }
         }
@@ -228,13 +228,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           scales: {
             x: {
               grid: { color: gridColor },
-              ticks: { color: textColor, font: { family, size: 11 } }
+              ticks: { color: textColor, font: { family: fontFamily, size: 11 } }
             },
             y: {
               grid: { color: gridColor },
               ticks: {
                 color: textColor,
-                font: { family, size: 11 },
+                font: { family: fontFamily, size: 11 },
                 callback: (v) => "$" + (v >= 1e3 ? (v/1e3).toFixed(0) + "k" : v)
               }
             }
@@ -358,14 +358,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           scales: {
             x: {
               grid: { color: gridColor },
-              ticks: { color: textColor, font: { family, size: 11 } }
+              ticks: { color: textColor, font: { family: fontFamily, size: 11 } }
             },
             y: {
               grid: { color: gridColor },
               max: 18,
               ticks: {
                 color: textColor,
-                font: { family, size: 11 },
+                font: { family: fontFamily, size: 11 },
                 callback: (v) => v + "%"
               }
             }
