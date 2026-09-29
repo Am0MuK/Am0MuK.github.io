@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "chain_id": 42161,
+    "chain_name": "Arbitrum One",
+    "protocol": "Aave V3",
+    "window_days": 365,
+    "start_date": "2025-09-19",
+    "end_date": "2026-09-18",
+    "eurusd_rate": 1.146,
+    "generated_at": "2026-09-29T07:47:51.205004+00:00"
+  },
+  "reconciliation": {
+    "distinct_liquidators": {
+      "published": 276,
+      "recomputed": 276,
+      "difference": 0
+    },
+    "net_usd_millions": {
+      "published": 3.18,
+      "recomputed": 3.18,
+      "exact_usd": 3175509.84
+    },
+    "net_eur_millions": {
+      "published": 2.77,
+      "recomputed": 2.77,
+      "exact_eur": 2770951.0
+    },
+    "top1_share_pct": {
+      "published": 26.9,
+      "recomputed": 26.9,
+      "exact_pct": 26.87
+    },
+    "top3_share_pct": {
+      "published": 45.9,
+      "recomputed": 45.9,
+      "exact_pct": 45.94
+    },
+    "top5_days_share_pct": {
+      "published": 66.0,
+      "recomputed": 66.4,
+      "exact_pct": 66.43
+    },
+    "oct10_share_pct": {
+      "published": 29.0,
+      "recomputed": 28.8,
+      "exact_pct": 28.79
+    }
+  },
+  "totals": {
+    "total_events_in_db": 11135,
+    "unpriced_event_count": 0,
+    "anomalous_event_count": 23,
+    "clean_event_count": 11112,
+    "distinct_liquidators": 276,
+    "total_gross_usd": 3508130.08,
+    "total_gas_usd": 106442.82,
+    "total_net_usd": 3175509.84,
+    "total_net_eur": 2770951.0,
+    "top1_share": 0.2687,
+    "top3_share": 0.4594,
+    "top10_share": 0.7978,
+    "top5_days_share": 0.6643,
+    "oct10_share": 0.2879
+  },
+  "months": [
+    {
+      "month_index": 1,
+      "start_date": "2025-09-19",
+      "end_date": "2025-10-23",
+      "event_count": 1267,
+      "net_usd": 1068501.33,
+      "net_eur": 932374.63,
+      "gross_usd": 1235336.2,
+      "gas_usd": 89561.0
+    },
+    {
+      "month_index": 2,
+      "start_date": "2025-10-23",
+      "end_date": "2025-11-22",
+      "event_count": 1583,
+      "net_usd": 840742.51,
+      "net_eur": 733632.2,
+      "gross_usd": 907140.05,
+      "gas_usd": 10215.92
+    },
+    {
+      "month_index": 3,
+      "start_date": "2025-11-22",
+      "end_date": "2025-12-22",
+      "event_count": 206,
+      "net_usd": 18571.84,
+      "net_eur": 16205.79,
+      "gross_usd": 20617.11,
+      "gas_usd": 547.19
+    },
+    {
+      "month_index": 4,
+      "start_date": "2025-12-22",
+      "end_date": "2026-01-21",
+      "event_count": 128,
+      "net_usd": 16782.56,
+      "net_eur": 14644.47,
+      "gross_usd": 18365.46,
+      "gas_usd": 325.06
+    },
+    {
+      "month_index": 5,
+      "start_date": "2026-01-21",
+      "end_date": "2026-02-20",
+      "event_count": 3640,
+      "net_usd": 950303.48,
+      "net_eur": 829235.15,
+      "gross_usd": 1023732.29,
+      "gas_usd": 5040.77
+    },
+    {
+      "month_index": 6,
+      "start_date": "2026-02-20",
+      "end_date": "2026-03-22",
+      "event_count": 484,
+      "net_usd": 7385.68,
+      "net_eur": 6444.75,
+      "gross_usd": 8292.51,
+      "gas_usd": 205.36
+    },
+    {
+      "month_index": 7,
+      "start_date": "2026-03-22",
+      "end_date": "2026-04-21",
+      "event_count": 1359,
+      "net_usd": 9138.05,
+      "net_eur": 7973.86,
+      "gross_usd": 10013.01,
+      "gas_usd": 123.65
+    },
+    {
+      "month_index": 8,
+      "start_date": "2026-04-21",
+      "end_date": "2026-05-21",
+      "event_count": 438,
+      "net_usd": 12603.76,
+      "net_eur": 10998.04,
+      "gross_usd": 13596.76,
+      "gas_usd": 44.81
+    },
+    {
+      "month_index": 9,
+      "start_date": "2026-05-21",
+      "end_date": "2026-06-20",
+      "event_count": 1365,
+      "net_usd": 223459.11,
+      "net_eur": 194990.5,
+      "gross_usd": 240676.05,
+      "gas_usd": 285.48
+    },
+    {
+      "month_index": 10,
+      "start_date": "2026-06-20",
+      "end_date": "2026-07-20",
+      "event_count": 427,
+      "net_usd": 11504.66,
+      "net_eur": 10038.97,
+      "gross_usd": 12417.63,
+      "gas_usd": 47.78
+    },
+    {
+      "month_index": 11,
+      "start_date": "2026-07-20",
+      "end_date": "2026-08-19",
+      "event_count": 83,
+      "net_usd": 4673.82,
+      "net_eur": 4078.38,
+      "gross_usd": 5053.85,
+      "gas_usd": 19.86
+    },
+    {
+      "month_index": 12,
+      "start_date": "2026-08-19",
+      "end_date": "2026-09-18",
+      "event_count": 132,
+      "net_usd": 11843.05,
+      "net_eur": 10334.25,
+      "gross_usd": 12889.16,
+      "gas_usd": 25.93
+    }
+  ],
+  "top_days": [
+    {
+      "date": "2025-10-10",
+      "net_usd": 914303.35,
+      "net_eur": 797821.43,
+      "share_of_year": 0.2879,
+      "event_count": 902
+    },
+    {
+      "date": "2025-11-04",
+      "net_usd": 394649.13,
+      "net_eur": 344370.97,
+      "share_of_year": 0.1243,
+      "event_count": 361
+    },
+    {
+      "date": "2026-02-05",
+      "net_usd": 356535.69,
+      "net_eur": 311113.16,
+      "share_of_year": 0.1123,
+      "event_count": 1279
+    },
+    {
+      "date": "2026-01-31",
+      "net_usd": 305385.92,
+      "net_eur": 266479.86,
+      "share_of_year": 0.0962,
+      "event_count": 951
+    },
+    {
+      "date": "2025-11-21",
+      "net_usd": 138617.26,
+      "net_eur": 120957.47,
+      "share_of_year": 0.0437,
+      "event_count": 372
+    },
+    {
+      "date": "2026-02-06",
+      "net_usd": 126210.77,
+      "net_eur": 110131.56,
+      "share_of_year": 0.0397,
+      "event_count": 579
+    },
+    {
+      "date": "2026-06-05",
+      "net_usd": 115051.61,
+      "net_eur": 100394.08,
+      "share_of_year": 0.0362,
+      "event_count": 776
+    },
+    {
+      "date": "2025-11-20",
+      "net_usd": 113709.87,
+      "net_eur": 99223.27,
+      "share_of_year": 0.0358,
+      "event_count": 129
+    },
+    {
+      "date": "2025-09-22",
+      "net_usd": 103917.74,
+      "net_eur": 90678.66,
+      "share_of_year": 0.0327,
+      "event_count": 90
+    },
+    {
+      "date": "2025-11-19",
+      "net_usd": 67660.67,
+      "net_eur": 59040.72,
+      "share_of_year": 0.0213,
+      "event_count": 129
+    }
+  ]
+}
