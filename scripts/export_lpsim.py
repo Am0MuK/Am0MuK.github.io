@@ -178,7 +178,7 @@ def main() -> None:
             "total_strategy_runs": total_runs_count,
             "total_pass_count": total_pass_count,
             "sizes_usd": [50, 1000, 10000],
-            "decision_pools": list(DECISION_POOLS),
+            "decision_pools": sorted(DECISION_POOLS),
         },
         "pool_summaries": summary_list,
         "pool_size_results": pool_size_results,
