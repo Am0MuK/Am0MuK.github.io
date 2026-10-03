@@ -26,8 +26,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderLiquidations(liqData);
     renderLpSim(lpsimData, valData);
+    renderDataAsOf(liqData.meta, lpsimData.meta);
   } catch (err) {
     console.error("Failed to load finding datasets:", err);
+  }
+
+  function renderDataAsOf(liqMeta, lpMeta) {
+    const el = document.getElementById("data-asof");
+    if (!el) return;
+    el.textContent =
+      "Data as of: liquidations " + liqMeta.start_date + " to " + liqMeta.end_date +
+      " (exported " + liqMeta.generated_at.slice(0, 10) + "); LP simulation window " +
+      lpMeta.window_days + " days (run " + lpMeta.date + ").";
   }
 
   function renderLiquidations(data) {
