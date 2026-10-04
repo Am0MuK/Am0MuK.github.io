@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What on-chain data says about two DeFi strategies</title>
-  <meta name="description" content="Empirical portfolio of measured findings on Aave V3 liquidations and Uniswap V3 stable LP strategies on Arbitrum.">
+  <title>Measured DeFi research and a live alert bot</title>
+  <meta name="description" content="Measured findings on Aave V3 liquidations and Uniswap V3 stable LP strategies, plus an open-source Telegram bot that watches Aave health factors and stablecoin prices.">
   <link rel="stylesheet" href="assets/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="assets/app.js" defer></script>
@@ -12,11 +12,11 @@
 <body>
   <div class="container">
     <header>
-      <h1>What on-chain data says about two DeFi strategies</h1>
+      <h1>Measured DeFi research and a live alert bot</h1>
       <p class="header-meta">
-        Measured on-chain research across Arbitrum One by 
+        Two measured studies on Arbitrum One and one open-source alert bot, by 
         <a href="https://github.com/Am0MuK" target="_blank" rel="noopener noreferrer">Am0MuK</a>.
-        Data generated strictly from local on-chain event databases.
+        The study data comes from local on-chain event databases. The bot figures come from the bot's own repository.
       </p>
       <p class="header-meta" id="data-asof"></p>
       <div class="links-bar">
@@ -24,6 +24,8 @@
         <span>MEV Scout: <a href="https://github.com/Am0MuK/mev-scout" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/mev-scout</a></span>
         <span>LP Simulator: <a href="https://github.com/Am0MuK/lp-sim" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/lp-sim</a></span>
         <span>Tie-Out: <a href="https://github.com/Am0MuK/onchain-tieout" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/onchain-tieout</a></span>
+        <span>Alert bot: <a href="https://github.com/Am0MuK/healthfactor_watch_bot" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/healthfactor_watch_bot</a></span>
+        <span>Try it: <a href="https://t.me/healthfactor_watch_bot" target="_blank" rel="noopener noreferrer">@healthfactor_watch_bot</a></span>
         <span>Contact: <a href="mailto:kontakt@defisteuer.de">kontakt@defisteuer.de</a></span>
       </div>
     </header>
@@ -41,6 +43,12 @@
           <div class="info-label">How I work</div>
           <div class="info-body">
             I write the specification, run the checks and review the result. The code is written with AI coding agents, and I say so. Languages: English, German, Romanian, Russian.
+          </div>
+        </div>
+        <div class="info-card full-width">
+          <div class="info-label">Monitoring and alerts</div>
+          <div class="info-body">
+            A read-only Telegram bot that watches Aave health factors and stablecoin prices (see Section C). For your own wallets, contracts or data feeds I can build the same kind of watcher and test it against the live source before handing it over.
           </div>
         </div>
         <div class="info-card full-width">
@@ -326,10 +334,81 @@
       <p id="lp-val-notes" style="font-size: 0.82rem; color: var(--text-dim); margin-top: -1rem; margin-bottom: 2rem;"></p>
     </section>
 
+    <!-- SECTION C: ALERT BOT -->
+    <section id="section-bot">
+      <div class="section-header">
+        <h2>Section C: Health factor and stablecoin alerts on Telegram</h2>
+        <p class="section-intro">A read-only Telegram bot for people who borrow on Aave. Open source, running in Docker on a small server.</p>
+      </div>
+
+      <p class="bot-error-note" id="bot-error-msg" style="display: none;">Data could not be loaded.</p>
+
+      <div class="spec-grid">
+        <div class="info-card full-width">
+          <div class="info-label">What it does</div>
+          <div class="info-body">
+            You send the bot a wallet address. It checks the address on every supported market, keeps watching the markets where the address has a position, and sends a Telegram message when the health factor falls to one of your alert levels. The default levels are 1.4, 1.2, 1.1 and 1.05, and each chat can set its own. It can also warn when one of 12 stablecoins moves away from 1 dollar. It reads public on-chain data, plus a public price API for the stablecoin alerts. No wallet connection, no keys, no transactions.
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Metrics Strip -->
+      <div class="metrics-strip bot-metrics">
+        <div class="metric-card">
+          <div class="metric-val" id="bot-markets">-</div>
+          <div class="metric-desc" id="bot-markets-desc">Aave V3 and V4 markets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">1 to 5 min</div>
+          <div class="metric-desc">How often a position is read, more often the closer it is to an alert level</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="bot-tests">-</div>
+          <div class="metric-desc">Automated tests in the repository, MIT license</div>
+        </div>
+      </div>
+
+      <!-- Sample Alerts Block -->
+      <div class="sample-alerts-block" id="bot-sample-alerts-block">
+        <div class="sample-alerts-caption">Examples with sample numbers, produced by the bot's own message formatter.</div>
+        <div class="sample-alerts-grid" id="bot-sample-alerts-grid">
+          <!-- Populated dynamically by assets/app.js -->
+        </div>
+      </div>
+
+      <div class="spec-grid">
+        <div class="info-card full-width">
+          <div class="info-label">What the checks caught before release</div>
+          <div class="info-body">
+            <ul class="check-list">
+              <li>The price source answers HTTP 200 with an empty result for an unknown token, which a simple parser reads as &quot;no depeg&quot;.</li>
+              <li>A freshness limit of 10 minutes dropped 5 of the 12 stablecoins on a live run, because the source refreshes in steps of about 5 minutes; the limit is now 20 minutes and all 12 are used.</li>
+              <li>When sending an alert to Telegram failed, the bot still moved the position to its new state, so the alert was lost; now the state stays and the next poll retries.</li>
+              <li>NaN and infinity were mishandled in two places: the alert-level command crashed on them and the price filter let a NaN confidence through.</li>
+              <li>A depeg confirmation that required the same level twice would have stayed silent during a fast collapse such as 1%, 3%, 7%, 10%; it now uses the lower of the last two data points.</li>
+              <li>A scan in which some markets failed was marked as complete; now it stays due and is retried.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limits Callout -->
+      <div class="callout">
+        <div class="callout-title">Limits</div>
+        <p>Public RPC endpoints are used, so a fast move can cross a level between two reads. The depeg alert arrives about 5 to 15 minutes after a move shows up in the price data. Only Aave V3 and V4 are covered, and dollar amounts are shown for V3 only. <span id="bot-best-effort">-</span> markets have a single public endpoint and are marked best effort. The messages are informational and not financial advice.</p>
+      </div>
+
+      <!-- Bot Links -->
+      <div class="bot-links" id="bot-links">
+        <span>Try it on Telegram: <a href="https://t.me/healthfactor_watch_bot" id="bot-link-telegram" target="_blank" rel="noopener noreferrer">@healthfactor_watch_bot</a></span>
+        <span>Code: <a href="https://github.com/Am0MuK/healthfactor_watch_bot" id="bot-link-repo" target="_blank" rel="noopener noreferrer">github.com/Am0MuK/healthfactor_watch_bot</a></span>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
       <p class="footer-disclaimer">
-        Not investment advice. This page presents empirical measurements derived strictly from historical on-chain data for engineering evaluation.
+        Not investment advice. Sections A and B present measurements derived from historical on-chain data for engineering evaluation. The alert bot in Section C is informational only.
       </p>
       <p class="footer-contact">
         Contact: <a href="mailto:kontakt@defisteuer.de">kontakt@defisteuer.de</a> | 

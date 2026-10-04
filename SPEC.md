@@ -2,12 +2,13 @@
 
 ## Goal
 One static page (GitHub Pages, repo Am0MuK/Am0MuK.github.io, served from main root) that shows two measured
-findings as a portfolio for freelance on-chain data work. Every number on the page must come from a script in
-this repo that reads the local databases, never typed by hand (one exception below).
+findings and a live Telegram alert bot as a portfolio for freelance on-chain data work. Every number on the page must come from a script in
+this repo that reads the local databases or repositories, never typed by hand (one exception below).
 
 ## Output files (all in this repo)
 - `scripts/export_liquidations.py` -> `data/liquidations.json`
 - `scripts/export_lpsim.py` -> `data/lpsim.json`
+- `scripts/export_bot.py` -> `data/bot.json`
 - `index.html` (+ `assets/style.css`, `assets/app.js`): loads the JSON files, draws charts with Chart.js from
   https://cdn.jsdelivr.net/npm/chart.js (pinned version), works on phone width, light/dark via prefers-color-scheme.
 - `README.md`: what the page is, how to regenerate (commands), data sources.
@@ -35,14 +36,18 @@ monthly net APYs, count of PASS (0 everywhere); plus for USDC/USDT0 at 1000 and 
 (403 rebalances, total net USD) versus the best static strategy. Mark the 3 pools that count for the decision
 (USDC/USDT0 0.01%, GHO/USDC 0.05%, USDe/USDT0 0.05%) versus info-only pools. Threshold line: 15% per year.
 
+## Section C: Health factor and stablecoin alerts on Telegram (healthfactor_watch_bot)
+Source: /data/projects/healthfactor_watch_bot (open READ-ONLY; repo path is in constant `BOT_REPO_DIR` in `scripts/export_bot.py`, overridable by argv[1]). Read-only Telegram bot for Aave borrowers watching positions across Aave V3/V4 and monitoring stablecoin pegs.
+Export: `markets_total`, `v3_chains` (distinct chains with protocol aave_v3), `v4_chains` (distinct chains with aave_v4), `v4_spokes` (count of aave_v4 markets), `best_effort` (count of markets with best_effort true) from `hfwb/markets.json`; `tests_collected` from `<repo>/.venv/bin/pytest --collect-only -q`; `repo_commit` from `git -C <repo> rev-parse --short HEAD`; `sample_alerts` (health factor alert L2 and stablecoin depeg alert D2 formatted with bot's own formatters); `links` to telegram bot and GitHub repository.
+
 ## Page text (English, short, plain, no marketing words)
-Title: "What on-chain data says about two DeFi strategies". Per section: the question, the rule fixed in advance,
-the result, how it was checked, limits. Link the repos github.com/Am0MuK/mev-scout, /lp-sim, /onchain-tieout and the
+Title: "Measured DeFi research and a live alert bot". Per section: the question, the rule fixed in advance,
+the result, how it was checked, limits (Sections A and B); overview, metrics, sample alerts, pre-release catches, limits (Section C). Link the repos github.com/Am0MuK/mev-scout, /lp-sim, /onchain-tieout, /healthfactor_watch_bot and the
 profile github.com/Am0MuK. Contact: kontakt@defisteuer.de. No invented facts: only what the data, the repos'
 READMEs and this spec say. No em dashes. Not investment advice line at the bottom.
 
 ## Rules
-- Work only inside /data/projects/am0muk.github.io. Never write to mev-scout, lp-sim or their databases.
+- Work only inside /data/projects/am0muk.github.io. Never write to mev-scout, lp-sim, healthfactor_watch_bot or their databases.
 - No network except none: no RPC, no .env, no API keys. Do not push. Do not touch "Central Memory".
 - Python stdlib + the mev-scout package only for the scripts. Commit locally with clear messages.
 - Final answer: files created, reconciliation table (published vs recomputed), anything that did not match,

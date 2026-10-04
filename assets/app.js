@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const fmtPct = (n) => Number(n).toFixed(1) + "%";
   const fmtInt = (n) => Number(n).toLocaleString("en-US");
 
+  let liqData = null;
+  let lpsimData = null;
+  let valData = null;
+  let botData = null;
+
   try {
     const [liqRes, lpsimRes, valRes] = await Promise.all([
       fetch("data/liquidations.json"),
@@ -20,24 +25,45 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("data/lpsim_validation.json")
     ]);
 
-    const liqData = await liqRes.json();
-    const lpsimData = await lpsimRes.json();
-    const valData = await valRes.json();
+    liqData = await liqRes.json();
+    lpsimData = await lpsimRes.json();
+    valData = await valRes.json();
 
     renderLiquidations(liqData);
     renderLpSim(lpsimData, valData);
-    renderDataAsOf(liqData.meta, lpsimData.meta);
   } catch (err) {
     console.error("Failed to load finding datasets:", err);
   }
 
-  function renderDataAsOf(liqMeta, lpMeta) {
+  try {
+    const botRes = await fetch("data/bot.json");
+    if (botRes.ok) {
+      botData = await botRes.json();
+      renderBot(botData);
+    } else {
+      renderBotError();
+    }
+  } catch (err) {
+    console.error("Failed to load bot dataset:", err);
+    renderBotError();
+  }
+
+  if (liqData && lpsimData) {
+    renderDataAsOf(liqData.meta, lpsimData.meta, botData);
+  }
+
+  function renderDataAsOf(liqMeta, lpMeta, bot) {
     const el = document.getElementById("data-asof");
     if (!el) return;
-    el.textContent =
+    let text =
       "Data as of: liquidations " + liqMeta.start_date + " to " + liqMeta.end_date +
       " (exported " + liqMeta.generated_at.slice(0, 10) + "); LP simulation window " +
-      lpMeta.window_days + " days (run " + lpMeta.date + ").";
+      lpMeta.window_days + " days (run " + lpMeta.date + ")";
+    if (bot && bot.repo_commit) {
+      const expDate = bot.generated_at ? bot.generated_at.slice(0, 10) : "";
+      text += "; alert bot repository at commit " + bot.repo_commit + " (exported " + expDate + ")";
+    }
+    el.textContent = text + ".";
   }
 
   function renderLiquidations(data) {
@@ -404,6 +430,58 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         }]
       });
+    }
+  }
+
+  function renderBot(data) {
+    const marketsEl = document.getElementById("bot-markets");
+    if (marketsEl) {
+      marketsEl.textContent = fmtInt(data.markets_total) + " markets";
+    }
+    const marketsDescEl = document.getElementById("bot-markets-desc");
+    if (marketsDescEl) {
+      marketsDescEl.textContent =
+        "Aave V3 on " + data.v3_chains + " chains, Aave V4 on " + data.v4_chains + " chains (" + data.v4_spokes + " spokes)";
+    }
+    const testsEl = document.getElementById("bot-tests");
+    if (testsEl) {
+      testsEl.textContent = fmtInt(data.tests_collected) + " tests";
+    }
+    const bestEffortEl = document.getElementById("bot-best-effort");
+    if (bestEffortEl) {
+      bestEffortEl.textContent = data.best_effort;
+    }
+
+    const alertsGrid = document.getElementById("bot-sample-alerts-grid");
+    if (alertsGrid && Array.isArray(data.sample_alerts)) {
+      alertsGrid.innerHTML = data.sample_alerts.map(a => `
+        <div class="chat-card">
+          <div class="info-label">${a.title}</div>
+          <div class="chat-bubble">${a.html}</div>
+        </div>
+      `).join("");
+      alertsGrid.querySelectorAll(".chat-bubble a").forEach(link => {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      });
+    }
+
+    if (data.links) {
+      const tgLink = document.getElementById("bot-link-telegram");
+      if (tgLink && data.links.telegram) {
+        tgLink.href = data.links.telegram;
+      }
+      const repoLink = document.getElementById("bot-link-repo");
+      if (repoLink && data.links.repo) {
+        repoLink.href = data.links.repo;
+      }
+    }
+  }
+
+  function renderBotError() {
+    const errorEl = document.getElementById("bot-error-msg");
+    if (errorEl) {
+      errorEl.style.display = "block";
     }
   }
 });

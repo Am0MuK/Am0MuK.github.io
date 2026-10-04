@@ -1,0 +1,24 @@
+{
+  "markets_total": 39,
+  "v3_chains": 20,
+  "v4_chains": 4,
+  "v4_spokes": 19,
+  "best_effort": 6,
+  "tests_collected": 230,
+  "repo_commit": "51ea437",
+  "links": {
+    "telegram": "https://t.me/healthfactor_watch_bot",
+    "repo": "https://github.com/Am0MuK/healthfactor_watch_bot"
+  },
+  "sample_alerts": [
+    {
+      "title": "Health factor alert",
+      "html": "\ud83d\udfe0 <b>Aave V3 \u00b7 Base</b>\nHealth factor <b>1.18</b>  \u25b0\u25b0\u25b1\u25b1\u25b1\u25b1\u25b1\u25b1\u25b1\u25b1\nFell below <b>1.2</b>\nAbout <b>15.3%</b> of collateral value can fall before liquidation at 1.00 (if debt value stays the same).\nCollateral $10,000 \u00b7 Debt $7,000\nAccount: 0xabab\u2026abab\n\n<i>Informational only, not financial advice.</i>"
+    },
+    {
+      "title": "Stablecoin price alert",
+      "html": "\ud83d\udfe0 <b>USDC price alert</b>\nPrice <b>$0.9871</b> (1.29% below $1.00)\nFell past <b>1%</b> from the peg\nMarket price (DefiLlama), updated 6 min ago\nAave oracle: $0.9998\n\n<i>Aggregated market price; it can differ between exchanges and chains. Informational only, not financial advice.</i>"
+    }
+  ],
+  "generated_at": "2026-10-04T16:53:12.614866+00:00"
+}
