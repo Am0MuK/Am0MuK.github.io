@@ -85,18 +85,36 @@ import json
 from decimal import Decimal
 from hfwb.markets import load_markets
 from hfwb.format import format_alert, format_depeg_alert
+from hfwb.positions import AssetPosition, PositionBreakdown
+from hfwb.pricedrop import format_liquidation_lines
 
 markets = load_markets()
 base_v3 = next(m for m in markets if m.chain == "Base" and m.protocol == "aave_v3")
 fake_addr = "0x" + "ab" * 20
 
+# Sample position: 2 WETH at $2,500 (LT 0.83) + 0.05 cbBTC at $100,000 (LT 0.78), 7,000 USDC debt.
+# Weighted collateral 4,150 + 3,900 = 8,050, so HF = 8,050 / 7,000 = 1.15.
+sample = PositionBreakdown(
+    assets=(
+        AssetPosition("WETH", "0x" + "11" * 20, 18, Decimal(2), Decimal(0), Decimal(2500), Decimal("0.83"), True),
+        AssetPosition("cbBTC", "0x" + "33" * 20, 8, Decimal("0.05"), Decimal(0), Decimal(100000), Decimal("0.78"), True),
+        AssetPosition("USDC", "0x" + "22" * 20, 6, Decimal(0), Decimal(7000), Decimal(1), Decimal("0.78"), False),
+    ),
+    emode_category=0,
+    collateral_usd=Decimal(10000),
+    weighted_collateral_usd=Decimal(8050),
+    debt_usd=Decimal(7000),
+    hf=Decimal("1.15"),
+)
+
 hf_html = format_alert(
     alert_type="L2",
     address=fake_addr,
-    hf=Decimal("1.18"),
+    hf=Decimal("1.15"),
     collateral_usd=Decimal(10000),
     debt_usd=Decimal(7000),
     market=base_v3,
+    details=format_liquidation_lines(sample),
 )
 
 depeg_html = format_depeg_alert(
